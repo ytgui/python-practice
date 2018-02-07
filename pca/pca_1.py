@@ -20,6 +20,7 @@ def pca_1(ax):
 
 
 def pca_2(ax):
+    # https://en.wikipedia.org/wiki/Principal_component_analysis
     x_data = np.loadtxt('x_data.csv', dtype=np.float64)
     y_label = np.loadtxt('y_label.csv', dtype=np.int)
     print('original shape:', x_data.shape)

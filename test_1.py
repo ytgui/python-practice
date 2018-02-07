@@ -1,6 +1,6 @@
 import numpy as np
 
 
-a = [1, 2, 3]
-b, c = np.average(a, returned=True)
-print(b, c)
+a = [6, 1, 2, 3, 4, 5]
+b = np.searchsorted(a, 2.1, sorter=True)
+print(b)
