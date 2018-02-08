@@ -15,8 +15,7 @@ def init_center(n_clusters, x_data):
     for i in range(1, n_clusters):
         # 2. For each data point x, compute D(x), the distance
         # between x and the nearest center that has already been chosen.
-        # dist = np.linalg.norm(np.subtract(x_data, center[i - 1]), axis=1)
-        dist = list(map(lambda x: np.min(np.linalg.norm(np.subtract(x, centers))), x_data))
+        dist = list(map(lambda x: np.min(np.linalg.norm(np.subtract(x, centers), axis=1)), x_data))
 
         # 3. Choose one new data point at random as a new center,
         # using a weighted probability distribution where a
@@ -56,7 +55,7 @@ def kmeans_2():
     # https://en.wikipedia.org/wiki/K-means_clustering
     # https://en.wikipedia.org/wiki/Lloyd%27s_algorithm
     n_clusters = 3
-    x_data, y_label = datasets.make_blobs(n_samples=500, random_state=20)
+    x_data, y_label = datasets.make_blobs(n_samples=300, random_state=20)
     centers = init_center(n_clusters, x_data)
     for i in range(300):
         y_predict = assignment_step(x_data, centers)
