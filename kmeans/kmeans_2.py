@@ -61,7 +61,7 @@ def kmeans_2():
         y_predict = assignment_step(x_data, centers)
         new_centers = update_step(n_clusters, x_data, y_predict)
         loss = np.sum(np.linalg.norm(np.subtract(new_centers, centers), axis=1))
-        if loss < 0.1:
+        if loss < 0.01:
             break
         centers = new_centers
 
