@@ -18,10 +18,10 @@ def fit_newton(x_data, y_target):
         g, h = np.zeros(shape=(1, 3)), np.zeros(shape=(3, 3))
         for x, y in zip(x_data, y_target):
             error = a * x ** 2 + b * x + c - y
-            g += error * np.array([[x ** 2, x, 1],])
+            g += error * np.array([[x ** 2, x, 1], ])
             h += np.array([[x ** 4, x ** 3, x ** 2],
-                          [x ** 3, x ** 2, x ** 1],
-                          [x ** 2, x ** 1, x ** 0]])
+                           [x ** 3, x ** 2, x ** 1],
+                           [x ** 2, x ** 1, x ** 0]])
         delta = np.matmul(g, np.linalg.inv(h))
         if np.sum(np.abs(delta)) < 1e-5:
             break
