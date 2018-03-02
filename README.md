@@ -18,6 +18,13 @@
 
 -----
 
+## pca
+
+![](pca/Figure_1.png)
+![](pca/Figure_2.png)
+
+-----
+
 ## regression
 
 ![](regression/Figure_1.png)
