@@ -24,6 +24,12 @@
 
 -----
 
+## ransac
+
+![](ransac/Figure_1.png)
+
+-----
+
 ## svm
 
 ![](svm/Figure_1.png)
