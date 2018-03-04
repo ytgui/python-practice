@@ -5,8 +5,8 @@ from sklearn import datasets
 
 
 def load_datasets():
-    x_data, y_label = datasets.make_blobs(n_samples=20, n_features=2, centers=2, cluster_std=2.0)
-    # x_data = (x_data - np.mean(x_data, axis=0)) / np.sqrt(np.var(x_data))
+    x_data, y_label = datasets.make_blobs(n_samples=20, n_features=2, centers=2, cluster_std=1.0)
+    x_data = (x_data - np.mean(x_data, axis=0)) / np.sqrt(np.var(x_data))
 
     n_samples, n_features = np.shape(x_data)
     idx = list(range(n_samples))
@@ -28,7 +28,8 @@ def lda_2():
     u_positive, u_negative = np.mean(x_positive, axis=0), np.mean(x_negative, axis=0)
 
     # center dist
-    s_b = np.matmul(u_positive - u_negative, (u_positive - u_negative).T)
+    # s_b = np.matmul(u_positive - u_negative, (u_positive - u_negative).T)
+    s_b = np.matmul(np.expand_dims(u_positive - u_negative, axis=1), np.expand_dims(u_positive - u_negative, axis=0))
 
     # covariance matrix
     s_w = np.cov(x_positive - u_positive, rowvar=False) + np.cov(x_negative - u_negative, rowvar=False)

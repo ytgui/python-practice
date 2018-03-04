@@ -1,7 +1,9 @@
-from collections import Counter
+import numpy as np
+import scipy
 
 
-a = [1, 2]
-b = [0, 0]
-map(lambda x: b.append(x), a)
-print(b)
+a = np.array([1, 2, 3])
+b = np.transpose(a)
+c = 0
+
+
