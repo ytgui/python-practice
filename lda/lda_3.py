@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn import datasets, decomposition
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 
 
 def load_datasets():
@@ -18,22 +19,28 @@ def load_datasets():
     return x_data, y_label
 
 
+def lda_1():
+    x_data, y_label = load_datasets()
+    model = LinearDiscriminantAnalysis(solver='eigen')
+    model.fit(x_data, y_label)
+
+
 def lda_3(ax):
     x_data, y_label = load_datasets()
     n_samples, n_features = np.shape(x_data)
-    n_classes = np.max(y_label)
+    classes = np.unique(y_label)
 
     u = np.mean(x_data, axis=0)
 
     s_w, s_b = np.zeros(shape=[n_features, n_features]), np.zeros(shape=[n_features, n_features])
 
-    for i in range(n_classes):
-        x_scatter = x_data[np.equal(y_label, i)]
-        u_scatter = np.mean(x_scatter, axis=0)
-        n_scatter = len(x_scatter)
+    for c in classes:
+        x_cluster = x_data[np.equal(y_label, c)]
+        u_cluster = np.mean(x_cluster, axis=0)
+        n_cluster = len(x_cluster)
 
-        s_w += n_scatter * np.matmul((x_scatter - u_scatter).T, x_scatter - u_scatter)
-        s_b += np.matmul(np.expand_dims(u_scatter - u, axis=1), np.expand_dims(u_scatter - u, axis=0))
+        s_w += n_cluster * np.matmul((x_cluster - u_cluster).T, x_cluster - u_cluster)
+        s_b += np.matmul(np.expand_dims(u_cluster - u, axis=1), np.expand_dims(u_cluster - u, axis=0))
 
     lamb, p = np.linalg.eigh(np.linalg.inv(s_w) * s_b)
     w = p[:, :3]

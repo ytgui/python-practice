@@ -16,6 +16,7 @@
 
 ![](lda/Figure_1.png)
 ![](lda/Figure_2.png)
+![](lda/Figure_3.png)
 
 -----
 
