@@ -47,6 +47,7 @@ class KalmanFilter:
 
 
 def main():
+    # 高维卡尔曼跟随器（无输入）
     kf = KalmanFilter()
 
     n_samples = 250
