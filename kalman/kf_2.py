@@ -15,7 +15,10 @@ class KalmanFilter:
         self.H = np.array([[1, 0, 0, 0],
                            [0, 1, 0, 0]], dtype=np.float)
 
-        # process noise cov
+        # covariance
+        # P 可以置为零，也可以通过 3sigma = 最大值 计算出 sigma^2 写入
+        # R 是测量噪声协方差，表征不同传感器的相关程度
+        # Q 是过程噪声协方差，
         self.Q = 1e-6 * np.eye(self.N_STATES, self.N_STATES, dtype=np.float)
         self.R = np.array([[0.25, 0],
                            [0, 0.25]], dtype=np.float)
@@ -48,6 +51,8 @@ class KalmanFilter:
 
 def main():
     # 高维卡尔曼跟随器（无输入）
+    # dx = ax => dx / x = a => lnx = ax => x = exp(ax) * x_0
+    # 卡尔曼滤波器中的 F 矩阵，是状态转移矩阵，计算过程中泰勒展开会略去一部分高阶项
     kf = KalmanFilter()
 
     n_samples = 250
