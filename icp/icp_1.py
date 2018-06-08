@@ -62,7 +62,7 @@ def main():
     print('m:', m)
 
     # show
-    plt.subplot(3, 3, 1)
+    plt.subplot(2, 3, 1)
     plt.scatter(a[:, 0], a[:, 1], marker='+', color='green')
     plt.scatter(b[:, 0], b[:, 1], marker='+', color='red')
     plt.xlim(-12, 12)
@@ -70,7 +70,7 @@ def main():
 
     indices, m_estimated = None, None
 
-    for i in range(8):
+    for i in range(5):
         distances, indices = nearest_neighbors(src=b, dst=a)
         indices = indices.ravel()
 
@@ -87,7 +87,7 @@ def main():
         print(np.mean(distances))
 
         # show
-        plt.subplot(3, 3, i + 2)
+        plt.subplot(2, 3, i + 2)
         plt.scatter(a[:, 0], a[:, 1], marker='+', color='green')
         plt.scatter(b[:, 0], b[:, 1], marker='+', color='red')
         plt.xlim(-12, 12)
